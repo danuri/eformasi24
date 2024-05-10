@@ -14,7 +14,7 @@
 
           <div class="page-title-right">
               <ol class="breadcrumb m-0">
-                  <li class="breadcrumb-item">Jumlah Formasi Terisi <span class="text-success">0</span> dari <?= $alokasi->jumlah?></li>
+                  <li class="breadcrumb-item">Jumlah Formasi Terisi <span class="text-danger text-bold" id="terisi">0</span> dari <?= $alokasi->jumlah?></li>
               </ol>
           </div>
 
@@ -199,6 +199,7 @@
 <script type="text/javascript">
   $(document).ready(function() {
 
+    updatedata();
     // $('#cpns').DataTable({
     var table = new DataTable('#cpns', {
       processing: true,
@@ -279,7 +280,7 @@
         loaderout();
         alert('Data telah disimpan');
         table.ajax.reload(null, false);
-
+        updatedata();
         $('#addModal').modal('hide');
       })
       .catch(function (error) {
@@ -326,6 +327,15 @@
     var ideal = parseInt(bezz) + parseInt(keb);
     $('#ideal').val(ideal);
   });
+
+  function updatedata() {
+    axios.get('<?= site_url('cpns/getterisi')?>')
+    .then(function (response) {
+      console.log(response.data);
+
+      $('#terisi').html(response.data.kebutuhan);
+    });
+  }
 
   // function simpan() {
   //   loaderin();

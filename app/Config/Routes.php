@@ -31,6 +31,7 @@ $routes->group("cpns", ["filter" => "auth"], function ($routes) {
     $routes->get('getjabatan/(:any)/(:any)', 'Cpns::getjabatan/$1/$2');
     $routes->post('getpendidikan', 'Cpns::getpendidikan');
     $routes->post('getdata', 'Cpns::getdata');
+    $routes->get('getterisi', 'Cpns::getterisi');
     $routes->post('add', 'Cpns::add');
     $routes->get('rekap', 'Cpns::rekap');
     $routes->get('export', 'Cpns::export');

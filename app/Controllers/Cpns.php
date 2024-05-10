@@ -75,6 +75,14 @@ class Cpns extends BaseController
       }
     }
 
+    public function getterisi()
+    {
+      $model = new UsulcpnsModel;
+      $input = $model->getcpnsinput();
+
+      return $this->response->setJSON($input);
+    }
+
     public function getpendidikan()
     {
       $model = new JabatanModel;
