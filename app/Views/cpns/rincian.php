@@ -288,6 +288,7 @@
         console.log(error);
       });
     });
+
   });
 
   $('#jenjang').on('change', function(event) {
@@ -334,6 +335,14 @@
       console.log(response.data);
 
       $('#terisi').html(response.data.kebutuhan);
+    });
+  }
+
+  function deletes(id) {
+    axios.get('<?= site_url('cpns/delete')?>/'+id)
+    .then(function (response) {
+      table.ajax.reload(null, false);
+      updatedata();
     });
   }
 

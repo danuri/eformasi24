@@ -25,10 +25,11 @@ class Cpns extends BaseController
     public function getdata()
     {
       $model = new UsulcpnsModel();
+      $model->where(['kode_satker'=>session('kodesatker')]);
 
       return DataTable::of($model)
       ->add('action', function($row){
-          return '<a href="javascript:;" onclick="delete(\''.$row->id.'\')" type="button" target="_blank" class="btn btn-sm btn-danger">Delete</a>';
+          return '<a href="javascript:;" onclick="deletes(\''.$row->id.'\')" type="button" class="btn btn-sm btn-danger">Delete</a>';
       })->filter(function ($builder, $request) {
 
         if ($request->jenis)
@@ -132,9 +133,10 @@ class Cpns extends BaseController
 
     public function delete($id)
     {
-      $id = decrypt($id);
       $model = new UsulcpnsModel;
       $model->delete($id);
+
+      echo 'ok';
     }
 
     public function rekap()

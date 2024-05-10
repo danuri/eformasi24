@@ -33,6 +33,7 @@ $routes->group("cpns", ["filter" => "auth"], function ($routes) {
     $routes->post('getdata', 'Cpns::getdata');
     $routes->get('getterisi', 'Cpns::getterisi');
     $routes->post('add', 'Cpns::add');
+    $routes->get('delete/(:any)', 'Cpns::delete/$1');
     $routes->get('rekap', 'Cpns::rekap');
     $routes->get('export', 'Cpns::export');
     $routes->get('final', 'Cpns::final');
