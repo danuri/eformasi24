@@ -47,7 +47,7 @@ class AlokasiModel extends Model
     public function getalokasi($kodesatker)
     {
       $query = $this->db->query("SELECT id,jenis, jumlah,
-                                (SELECT COALESCE(SUM(kebutuhan),0) FROM usul_cpns WHERE kategori=jenis) AS kebutuhan
+                                (SELECT COALESCE(SUM(kebutuhan),0) FROM usul_cpns WHERE kategori=jenis AND kode_satker='$kodesatker') AS kebutuhan
                                 FROM alokasi_satker WHERE kode_satker='$kodesatker'");
       return $query->getResult();
     }
