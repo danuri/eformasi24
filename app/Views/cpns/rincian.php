@@ -184,28 +184,30 @@
     </div>
     <div class="offcanvas-body">
         <p>Penentuan Jabatan berdasarkan kategori Jabatan</p>
-        <h5>GURU MADRASAH</h5>
+        <h5>✔ GURU MADRASAH</h5>
         <p>Jabatan Guru yang akan ditempatkan pada unit MIN, MTsN, MAN. Termasuk MAN Insan Cendikia dan MAN PK</p>
-        <h5>GURU MAKN</h5>
+        <h5>✔ GURU MAKN</h5>
         <p>Jabatan Guru yang akan ditempatkan pada unit Madrasah Aliyah Kejuruan Negeri (MAKN).</p>
-        <h5>GURU Non Madrasah</h5>
+        <h5>✔ GURU Non Madrasah</h5>
         <p><b>SMA Katolik</b> Jabatan Guru yang akan ditempatkan pada unit SMA Katolik Negeri di 3 lokasi (Sumut, NTT, Papua) </p>
         <p><b>SMT Kristen</b>Jabatan Guru yang akan ditempatkan pada unit SMT Kristen Negeri di 3 lokasi di lingkungan Prov. Papua Barat</p>
         <h5>Penghulu</h5>
         <p>Jabatan Penghulu yang akan ditempatkan pada KUA Kecamatan</p>
-        <h5>Penyuluh Agama</h5>
-        <p>Jabatan Penghulu yang akan ditempatkan di lingkungan Kantor Wilayah Kementerian Agama</p>
-        <h5>APIP</h5>
+        <h5>✔ Penyuluh Agama Islam</h5>
+        <p>Jabatan Penyuluh Agama Islam yang akan ditempatkan pada KUA Kecamatan, selain Islam ditem di lingkungan Kantor Wilayah Kementerian Agama</p>
+        <h5>✔ Penyuluh Agama Non Islam</h5>
+        <p>Jabatan Penyuluh Agama yang akan ditempatkan di lingkungan Kantor Wilayah Kementerian Agama Prov. / Kantor Kementerian Agama Kab/Kota</p>
+        <h5>✔ APIP</h5>
         <p>Jabatan Auditor yang akan ditempatkan pada Inspektorat Jenderal dan SPI pada PTKN</p>
-        <h5>DIGITAL</h5>
+        <h5>✔ DIGITAL</h5>
         <p>Jabatan ini dapat diisi oleh Jabatan yang berhubungan langsung dengan proses transformasi digital yang akan ditempatkan pada seluruh Satuan Kerja Kementerian Agama</p>
-        <h5>IKN</h5>
+        <h5>✔ IKN</h5>
         <p>Jabatan ini dapat diisi oleh Jabatan Teknis dan penempatannya pada Unit Eselon I Pusat untuk ditempatkan di IKN</p>
-        <h5>PP Terbaik Kaltim</h5>
+        <h5>✔ PP Terbaik Kaltim</h5>
         <p>Jabatan ini diisi oleh Putra/Putri Terbaik Kalimantan Timur di wilayah Provinsi Kalimantan Timur</p>
-        <h5>PP Papua</h5>
+        <h5>✔ PP Papua</h5>
         <p>Jabatan ini diisi oleh Putra/Putri Terbaik Papua di wilayah Provinsi Papua.</p>
-        <h5>PP Papua Barat</h5>
+        <h5>✔ PP Papua Barat</h5>
         <p>Jabatan ini diisi oleh Putra/Putri Papua Terbaik Barat di wilayah Provinsi Papua Barat.</p>
     </div>
 </div>
