@@ -12,7 +12,7 @@ class UsulcpnsModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['kategori','kode_satker','jenis_jabatan','jabatan','unit_id','unit_nama','bezzeting','kebutuhan','ideal','created_by'];
+    protected $allowedFields    = ['kategori','kode_satker','jenis_jabatan','jabatan','kualifikasi_pendidikan','unit_id','unit_nama','bezzeting','kebutuhan','ideal','created_by'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

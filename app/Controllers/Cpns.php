@@ -90,7 +90,11 @@ class Cpns extends BaseController
       $id = $this->request->getVar('jabatan');
       $jabatan = $model->getpendidikan($id);
 
-      $data = ($jabatan->kualifikasi_pendidikan)?$jabatan->kualifikasi_pendidikan:'Belum Tersedia';
+      if(session('jenis_pendidikan') == 1){
+        $data = ($jabatan->kualifikasi_pendidikan)?$jabatan->kualifikasi_pendidikan:'Belum Tersedia';
+      }else{
+        $data = ($jabatan->kualifikasi_pendidikan_non_islam)?$jabatan->kualifikasi_pendidikan_non_islam:'Belum Tersedia';
+      }
       return $this->response->setJSON($data);
     }
 
@@ -124,6 +128,10 @@ class Cpns extends BaseController
         'ideal' => $ideal,
         'created_by' => session('nip'),
       ];
+
+      if($this->request->getVar('kategori') == 'DOSEN'){
+        $param['kualifikasi_pendidikan'] = json_encode($this->request->getVar('pendidikan'));
+      }
 
       $model = new UsulcpnsModel;
       $model->insert($param);

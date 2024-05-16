@@ -112,14 +112,26 @@
                       </select>
                     </div>
                 </div>
+                <?php if($alokasi->jenis == 'DOSEN'){ ?>
                 <div class="row mb-3">
                     <div class="col-lg-3">
                         <label for="websiteUrl" class="form-label">Pendidikan</label>
                     </div>
                     <div class="col-lg-9">
-                      <textarea name="pendidikan" id="pendidikan" class="form-control" rows="3" disabled></textarea>
+                      <select class="form-select" name="pendidikan[]" id="pendidikandosen" multiple="multiple">
+                      </select>
                     </div>
                 </div>
+                <?php }else{ ?>
+                  <div class="row mb-3">
+                    <div class="col-lg-3">
+                      <label for="websiteUrl" class="form-label">Pendidikan</label>
+                    </div>
+                    <div class="col-lg-9">
+                      <textarea name="pendidikan" id="pendidikan" class="form-control" rows="3" disabled></textarea>
+                    </div>
+                  </div>
+                <?php } ?>
                 <div class="row mb-3">
                     <div class="col-lg-3">
                         <label for="timeInput" class="form-label">Unit Penempatan</label>
@@ -273,6 +285,9 @@
         jenis_jabatan: $('#jenis_jabatan').val(),
         jabatan: $('#jabatan').val(),
         penempatan: $('#penempatan').val(),
+        <?php if($alokasi->jenis == 'DOSEN'){ ?>
+          pendidikan: $('#pendidikandosen').val(),
+        <?php } ?>
         bezzeting: $('#bezzeting').val(),
         kebutuhan: $('#kebutuhan').val()
       })
@@ -301,6 +316,38 @@
     $('#jabatan').select2({
         dropdownParent: $('#addModal')
     });
+  });
+
+  $('#pendidikandosen').select2({
+    ajax: {
+      url: '<?= site_url() ?>ajax/searchpendidikan',
+      data: function (params) {
+        var query = {
+          search: params.term,
+          type: 'public'
+        }
+
+        return query;
+      },
+      processResults: function (data) {
+        return {
+          results: data
+        };
+      },
+      processResults: (data, params) => {
+          const results = data.map(item => {
+            return {
+              id: item.nama,
+              text: item.nama,
+            };
+          });
+          return {
+            results: results,
+          }
+        },
+    },
+    placeholder: 'Cari Pendidikan',
+    minimumInputLength: 5,
   });
 
   $('#jabatan').on('change', function(event) {

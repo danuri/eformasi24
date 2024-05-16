@@ -6,10 +6,10 @@ use CodeIgniter\Model;
 
 class PendidikanModel extends Model
 {
-    protected $table            = 'pendidikans';
+    protected $table            = 'ref_pendidikan';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [];
