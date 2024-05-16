@@ -60,10 +60,10 @@ class UsulcpnsModel extends Model
       return $query->getRow();
     }
 
-    public function getcpnsinput()
+    public function getcpnsinput($jenis)
     {
       $kodesatker = session('kodesatker');
-      $query = $this->db->query("SELECT SUM(kebutuhan) AS kebutuhan FROM usul_cpns WHERE kode_satker='$kodesatker'");
+      $query = $this->db->query("SELECT SUM(kebutuhan) AS kebutuhan FROM usul_cpns WHERE kode_satker='$kodesatker' AND kategori='$jenis'");
 
       return $query->getRow();
     }

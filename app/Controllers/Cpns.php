@@ -76,10 +76,10 @@ class Cpns extends BaseController
       }
     }
 
-    public function getterisi()
+    public function getterisi($jenis)
     {
       $model = new UsulcpnsModel;
-      $input = $model->getcpnsinput();
+      $input = $model->getcpnsinput($jenis);
 
       return $this->response->setJSON($input);
     }

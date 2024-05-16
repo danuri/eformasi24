@@ -384,7 +384,7 @@
   });
 
   function updatedata() {
-    axios.get('<?= site_url('cpns/getterisi')?>')
+    axios.get('<?= site_url('cpns/getterisi/'.$alokasi->jenis)?>')
     .then(function (response) {
       console.log(response.data);
 
