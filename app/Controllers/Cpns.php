@@ -29,7 +29,7 @@ class Cpns extends BaseController
 
       return DataTable::of($model)
       ->add('action', function($row){
-          return '<a href="javascript:;" onclick="deletes(\''.$row->id.'\')" type="button" class="btn btn-sm btn-danger">Delete</a>';
+          return '<a href="javascript:;" data-id="'.$row->id.'" type="button" class="btn btn-sm btn-danger delete">Delete</a>';
       })->filter(function ($builder, $request) {
 
         if ($request->jenis)

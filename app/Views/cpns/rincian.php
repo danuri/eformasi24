@@ -311,6 +311,19 @@
       });
     });
 
+    $('.delete').on('click', function(event) {
+      let text = "Data akan dihapus?";
+      if (confirm(text) == true) {
+        loaderin();
+        axios.get('<?= site_url('cpns/delete')?>/'+$(this).data('id'))
+        .then(function (response) {
+          table.ajax.reload(null, false);
+          updatedata();
+          loaderout();
+        });
+      }
+    });
+
   });
 
   $('#jenjang').on('change', function(event) {
