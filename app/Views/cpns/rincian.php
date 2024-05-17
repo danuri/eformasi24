@@ -395,10 +395,12 @@
   function deletes(id) {
     let text = "Data akan dihapus?";
     if (confirm(text) == true) {
+      loaderin();
       axios.get('<?= site_url('cpns/delete')?>/'+id)
       .then(function (response) {
         table.ajax.reload(null, false);
         updatedata();
+        loaderout();
       });
     }
 
