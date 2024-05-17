@@ -411,9 +411,9 @@
       loaderin();
       axios.get('<?= site_url('cpns/delete')?>/'+id)
       .then(function (response) {
-        table.ajax.reload(null, false);
-        updatedata();
         loaderout();
+        $('#cpns').DataTable().ajax.reload(null, false);
+        updatedata();
       });
     }
 
