@@ -393,11 +393,15 @@
   }
 
   function deletes(id) {
-    axios.get('<?= site_url('cpns/delete')?>/'+id)
-    .then(function (response) {
-      table.ajax.reload(null, false);
-      updatedata();
-    });
+    let text = "Data akan dihapus?";
+    if (confirm(text) == true) {
+      axios.get('<?= site_url('cpns/delete')?>/'+id)
+      .then(function (response) {
+        table.ajax.reload(null, false);
+        updatedata();
+      });
+    }
+
   }
 
   // function simpan() {
