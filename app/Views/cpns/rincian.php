@@ -311,7 +311,7 @@
       });
     });
 
-    $('.delete').on('click', function(event) {
+    $('.hapus').on('click', function(event) {
       let text = "Data akan dihapus?";
       if (confirm(text) == true) {
         loaderin();
