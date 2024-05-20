@@ -131,6 +131,7 @@ class Cpns extends BaseController
 
       if($this->request->getVar('kategori') == 'DOSEN'){
         $param['kualifikasi_pendidikan'] = json_encode($this->request->getVar('pendidikan'));
+        $param['sub_jabatan'] = $this->request->getVar('sub_jabatan');
       }
 
       $model = new UsulcpnsModel;

@@ -53,6 +53,7 @@
                   <tr>
                     <th>Jenis Jabatan</th>
                     <th>Jabatan</th>
+                    <th>Sub Jabatan</th>
                     <th>Unit Penempatan</th>
                     <th>Alokasi</th>
                     <th>Opsi</th>
@@ -113,6 +114,14 @@
                     </div>
                 </div>
                 <?php if($alokasi->jenis == 'DOSEN'){ ?>
+                <div class="row mb-3">
+                  <div class="col-lg-3">
+                    <label for="dateInput" class="form-label">Sub Jabatan (Mata Kuliah)</label>
+                  </div>
+                  <div class="col-lg-9">
+                    <input type="text" class="form-control" name="sub_jabatan" id="sub_jabatan">
+                  </div>
+                </div>
                 <div class="row mb-3">
                     <div class="col-lg-3">
                         <label for="websiteUrl" class="form-label">Pendidikan</label>
@@ -233,6 +242,7 @@
       columns: [
         {data: 'jenis_jabatan'},
         {data: 'jabatan'},
+        {data: 'sub_jabatan'},
         {data: 'unit_nama'},
         {data: 'kebutuhan'},
         {data: 'action', orderable: false},
@@ -294,6 +304,7 @@
         penempatan: $('#penempatan').val(),
         <?php if($alokasi->jenis == 'DOSEN'){ ?>
           pendidikan: $('#pendidikandosen').val(),
+          sub_jabatan: $('#sub_jabatan').val(),
         <?php } ?>
         bezzeting: $('#bezzeting').val(),
         kebutuhan: $('#kebutuhan').val()
