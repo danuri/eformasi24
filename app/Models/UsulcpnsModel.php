@@ -67,4 +67,14 @@ class UsulcpnsModel extends Model
 
       return $query->getRow();
     }
+
+    public function getrekapsatker()
+    {
+      $query = $this->db->query("SELECT a.kode_satker, a.satuan_kerja,
+                                (SELECT SUM(jumlah) FROM alokasi_satker WHERE alokasi_satker.kode_satker=a.kode_satker) AS alokasi,
+                                (SELECT SUM(kebutuhan) FROM usul_cpns WHERE usul_cpns.kode_satker=a.kode_satker) AS input
+                                FROM users a WHERE role='1'");
+
+      return $query->getResult();
+    }
 }

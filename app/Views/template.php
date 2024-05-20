@@ -171,6 +171,7 @@
                                 <i class="ri-honour-line"></i> <span data-key="t-widgets">Dashboard</span>
                             </a>
                         </li>
+                        <?php if(session('role') == 1){ ?>
                         <li class="menu-title"><span data-key="t-menu">Usul CPNS</span></li>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="<?= site_url('cpns')?>">
@@ -188,6 +189,14 @@
                                 <i class="ri-honour-line"></i> <span data-key="t-widgets">Coming Soon</span>
                             </a>
                         </li>
+                      <?php }else if(session('role') == 2){ ?>
+                        <li class="menu-title"><span data-key="t-menu">Usul CPNS</span></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="<?= site_url('admin/cpns')?>">
+                                <i class="ri-honour-line"></i> <span data-key="t-widgets">Rekap Satker</span>
+                            </a>
+                        </li>
+                      <?php } ?>
                     </ul>
                 </div>
                 <!-- Sidebar -->

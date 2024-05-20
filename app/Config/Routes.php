@@ -24,6 +24,13 @@ $routes->group("ajax", ["filter" => "auth"], function ($routes) {
     // $routes->post('add', 'Users::add');
 });
 
+$routes->group("admin", ["filter" => "adminauth"], function ($routes) {
+  $routes->group("cpns", function ($routes) {
+      $routes->get('', 'Admin\Cpns::index');
+      $routes->get('rincian/(:any)', 'Cpns::rincian/$1');
+  });
+});
+
 $routes->group("cpns", ["filter" => "auth"], function ($routes) {
     $routes->get('', 'Cpns::index');
     $routes->get('rincian/(:any)', 'Cpns::rincian/$1');
