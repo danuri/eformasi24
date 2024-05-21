@@ -183,6 +183,11 @@
                                 <i class="ri-honour-line"></i> <span data-key="t-widgets">Rekapitulasi</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="<?= site_url('cpns/upload')?>">
+                                <i class="ri-honour-line"></i> <span data-key="t-widgets">Upload SPTJM</span>
+                            </a>
+                        </li>
                         <li class="menu-title"><span data-key="t-menu">Usul CPPPK</span></li>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#">

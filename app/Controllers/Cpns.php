@@ -226,6 +226,14 @@ class Cpns extends BaseController
       exit();
     }
 
+    public function upload()
+    {
+      $user = new UsersModel;
+      $data['user'] = $user->find(session('idsatker'));
+
+      return view('cpns/upload', $data);
+    }
+
     public function final()
     {
         $validationRule = [
@@ -244,17 +252,17 @@ class Cpns extends BaseController
     $file_name = $_FILES['lampiran']['name'];
     $ext = pathinfo($file_name, PATHINFO_EXTENSION);
 
-    $file_name = 'sptjm.cpppk.'.session('kodesatker').'.'.$ext;
+    $file_name = 'sptjm.cpns.'.session('kodesatker').'.'.$ext;
     $temp_file_location = $_FILES['lampiran']['tmp_name'];
 
     $s3 = new S3Client([
       'region'  => 'us-east-1',
-      'endpoint' => 'https://docu.kemenag.go.id:9000/',
+      'endpoint' => 'https://ropeg.kemenag.go.id:9000/',
       'use_path_style_endpoint' => true,
       'version' => 'latest',
       'credentials' => [
-        'key'    => "118ZEXFCFS0ICPCOLIEJ",
-        'secret' => "9xR+TBkYyzw13guLqN7TLvxhfuOHSW++g7NCEdgP",
+        'key'    => "PkzyP2GIEBe8z29xmahI",
+        'secret' => "voNVqTilX2iux6u7pWnaqJUFG1414v0KTaFYA0Uz",
       ],
       'http'    => [
           'verify' => false
@@ -262,18 +270,19 @@ class Cpns extends BaseController
     ]);
 
     $result = $s3->putObject([
-      'Bucket' => 'sscasn',
-      'Key'    => '2024/eformasi/'.$file_name,
+      'Bucket' => 'casn2024',
+      'Key'    => 'eformasi/'.$file_name,
       'SourceFile' => $temp_file_location,
       'ContentType' => 'application/pdf'
     ]);
 
-    $up = new UserModel;
+    $up = new UsersModel;
       $data = [
-        'lampiran_pppk' => $file_name
+        'lampiran_cpns' => $file_name,
+        'upload_cpns_at' => date('Y-m-d H:i:s')
       ];
 
-    $update = $up->where(['kode_satker_parent'=>session('kodesatker')])->set($data)->update();
+    $update = $up->where(['kode_satker'=>session('kodesatker')])->set($data)->update();
 
     session()->setFlashdata('message', 'Dokumen telah diunggah');
     return redirect()->back();
