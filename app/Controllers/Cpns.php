@@ -32,8 +32,8 @@ class Cpns extends BaseController
       $user = new UsersModel;
       $getuser = $user->find(session('idsatker'));
 
-      $now = strtotime(date('Y-m-d H:i:s'));
-      $limit = strtotime($getuser->end_cpns);
+      $now = date('YmdHis');
+      $limit = date('YmdHis',strtotime($getuser->end_cpns));
 
       if($limit < $now){
         return DataTable::of($model)
@@ -72,8 +72,8 @@ class Cpns extends BaseController
         $user = new UsersModel;
         $getuser = $user->find(session('idsatker'));
 
-        $now = strtotime(date('Y-m-d H:i:s'));
-        $limit = strtotime($getuser->end_cpns);
+        $now = date('YmdHis');
+        $limit = date('YmdHis',strtotime($getuser->end_cpns));
 
         if($limit < $now){
           return view('cpns/preview', $data);
@@ -146,8 +146,8 @@ class Cpns extends BaseController
       $unitnama = $unormodel->find($unitid)->nama;
       $ideal = $this->request->getVar('bezzeting') + $this->request->getVar('kebutuhan');
 
-      $now = strtotime(date('Y-m-d H:i:s'));
-      $limit = strtotime($getuser->end_cpns);
+      $now = date('YmdHis');
+      $limit = date('YmdHis',strtotime($getuser->end_cpns));
 
       if($limit < $now){
         return false;
