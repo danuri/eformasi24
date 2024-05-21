@@ -267,7 +267,7 @@ class Cpns extends BaseController
 
     $s3 = new S3Client([
       'region'  => 'us-east-1',
-      'endpoint' => 'https://ropeg.kemenag.go.id:9000/',
+      'endpoint' => 'http://10.33.0.164:9000/',
       'use_path_style_endpoint' => true,
       'version' => 'latest',
       'credentials' => [
