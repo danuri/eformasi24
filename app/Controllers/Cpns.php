@@ -212,9 +212,10 @@ class Cpns extends BaseController
       $sheet->setCellValue('C1', 'SUB JABATAN');
       $sheet->setCellValue('D1', 'UNIT PENEMPATAN ID');
       $sheet->setCellValue('E1', 'UNIT PENEMPATAN NAMA');
-      $sheet->setCellValue('F1', 'BEZZETING');
-      $sheet->setCellValue('G1', 'JUMLAH IDEAL');
-      $sheet->setCellValue('H1', 'KEBUTUHAN');
+      $sheet->setCellValue('F1', 'PENDIDIKAN');
+      $sheet->setCellValue('G1', 'BEZZETING');
+      $sheet->setCellValue('H1', 'JUMLAH IDEAL');
+      $sheet->setCellValue('I1', 'KEBUTUHAN');
 
       $i = 2;
       foreach ($usul as $row) {
@@ -223,9 +224,10 @@ class Cpns extends BaseController
         $sheet->setCellValue('C'.$i, $row->sub_jabatan);
         $sheet->setCellValue('D'.$i, $row->unit_id);
         $sheet->setCellValue('E'.$i, $row->unit_nama);
-        $sheet->setCellValue('F'.$i, $row->bezzeting);
-        $sheet->setCellValue('G'.$i, $row->ideal);
-        $sheet->setCellValue('H'.$i, $row->kebutuhan);
+        $sheet->setCellValue('F'.$i, $row->kualifikasi_pendidikan);
+        $sheet->setCellValue('G'.$i, $row->bezzeting);
+        $sheet->setCellValue('H'.$i, $row->ideal);
+        $sheet->setCellValue('I'.$i, $row->kebutuhan);
         $i++;
       }
 
