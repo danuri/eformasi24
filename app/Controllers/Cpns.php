@@ -11,6 +11,8 @@ use App\Models\AlokasiModel;
 use App\Models\JabatanModel;
 use App\Models\UsulcpnsModel;
 use App\Models\UnorModel;
+use App\Models\UsersModel;
+use Aws\S3\S3Client;
 
 class Cpns extends BaseController
 {
@@ -27,15 +29,33 @@ class Cpns extends BaseController
       $model = new UsulcpnsModel();
       $model->where(['kode_satker'=>session('kodesatker')]);
 
-      return DataTable::of($model)
-      ->add('action', function($row){
-          return '<a href="javascript:;" onclick="deletes(\''.$row->id.'\')" type="button" class="btn btn-sm btn-danger">Delete</a>';
-      })->filter(function ($builder, $request) {
+      $user = new UsersModel;
+      $getuser = $user->find(session('idsatker'));
 
-        if ($request->jenis)
-            $builder->where('kategori', $request->jenis);
+      $now = time();
+      $limit = strtotime($getuser->end_cpns);
 
-      })->toJson(true);
+      if($limit < $now){
+        return DataTable::of($model)
+        ->add('action', function($row){
+            return '';
+        })->filter(function ($builder, $request) {
+
+          if ($request->jenis)
+              $builder->where('kategori', $request->jenis);
+
+        })->toJson(true);
+      }else{
+        return DataTable::of($model)
+        ->add('action', function($row){
+            return '<a href="javascript:;" onclick="deletes(\''.$row->id.'\')" type="button" class="btn btn-sm btn-danger">Delete</a>';
+        })->filter(function ($builder, $request) {
+
+          if ($request->jenis)
+              $builder->where('kategori', $request->jenis);
+
+        })->toJson(true);
+      }
     }
 
     public function rincian($jenis)
@@ -48,7 +68,18 @@ class Cpns extends BaseController
 
         $id = decrypt($jenis);
         $data['alokasi'] = $model->find($id);
-        return view('cpns/rincian', $data);
+
+        $user = new UsersModel;
+        $getuser = $user->find(session('idsatker'));
+
+        $now = time();
+        $limit = strtotime($getuser->end_cpns);
+
+        if($limit < $now){
+          return view('cpns/preview', $data);
+        }else{
+          return view('cpns/rincian', $data);
+        }
     }
 
     public function getjenis($id)
@@ -197,6 +228,54 @@ class Cpns extends BaseController
 
     public function final()
     {
-      return view('cpns/final');
+        $validationRule = [
+          'lampiran' => [
+              'label' => 'Lampiran',
+              'rules' => 'uploaded[lampiran]'
+                  . '|ext_in[lampiran,pdf,PDF]'
+          ],
+      ];
+
+    if (! $this->validate($validationRule)) {
+          session()->setFlashdata('message', $this->validator->getErrors()['lampiran']);
+          return redirect()->back();
+    }
+
+    $file_name = $_FILES['lampiran']['name'];
+    $ext = pathinfo($file_name, PATHINFO_EXTENSION);
+
+    $file_name = 'sptjm.cpppk.'.session('kodesatker').'.'.$ext;
+    $temp_file_location = $_FILES['lampiran']['tmp_name'];
+
+    $s3 = new S3Client([
+      'region'  => 'us-east-1',
+      'endpoint' => 'https://docu.kemenag.go.id:9000/',
+      'use_path_style_endpoint' => true,
+      'version' => 'latest',
+      'credentials' => [
+        'key'    => "118ZEXFCFS0ICPCOLIEJ",
+        'secret' => "9xR+TBkYyzw13guLqN7TLvxhfuOHSW++g7NCEdgP",
+      ],
+      'http'    => [
+          'verify' => false
+      ]
+    ]);
+
+    $result = $s3->putObject([
+      'Bucket' => 'sscasn',
+      'Key'    => '2024/eformasi/'.$file_name,
+      'SourceFile' => $temp_file_location,
+      'ContentType' => 'application/pdf'
+    ]);
+
+    $up = new UserModel;
+      $data = [
+        'lampiran_pppk' => $file_name
+      ];
+
+    $update = $up->where(['kode_satker_parent'=>session('kodesatker')])->set($data)->update();
+
+    session()->setFlashdata('message', 'Dokumen telah diunggah');
+    return redirect()->back();
     }
 }
