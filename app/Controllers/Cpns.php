@@ -146,6 +146,9 @@ class Cpns extends BaseController
       $unitnama = $unormodel->find($unitid)->nama;
       $ideal = $this->request->getVar('bezzeting') + $this->request->getVar('kebutuhan');
 
+      $user = new UsersModel;
+      $getuser = $user->find(session('idsatker'));
+
       $now = date('YmdHis');
       $limit = date('YmdHis',strtotime($getuser->end_cpns));
 
