@@ -243,6 +243,11 @@ class Cpns extends BaseController
       $user = new UsersModel;
       $data['user'] = $user->find(session('idsatker'));
 
+      $rmodel = new UsulcpnsModel;
+      $data['total'] = $rmodel->getcpnstotal();
+      $data['input'] = $rmodel->getcpnsinput();
+      $data['rekap'] = $rmodel->getrekap();
+
       return view('cpns/upload', $data);
     }
 
