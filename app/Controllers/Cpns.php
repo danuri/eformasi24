@@ -32,7 +32,7 @@ class Cpns extends BaseController
       $user = new UsersModel;
       $getuser = $user->find(session('idsatker'));
 
-      $now = time();
+      $now = strtotime("now");
       $limit = strtotime($getuser->end_cpns);
 
       if($limit < $now){
@@ -72,7 +72,7 @@ class Cpns extends BaseController
         $user = new UsersModel;
         $getuser = $user->find(session('idsatker'));
 
-        $now = time();
+        $now = strtotime("now");
         $limit = strtotime($getuser->end_cpns);
 
         if($limit < $now){
