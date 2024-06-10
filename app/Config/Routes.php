@@ -16,6 +16,12 @@ $routes->get('/', 'Home::index');
 $routes->get('home', 'Home::index');
 $routes->get('monitor', 'Monitor::index');
 
+$routes->get('api/setpendidikan/(:any)/(:num)', 'Api::setpendidikan/$1/$2');
+$routes->get('api/setpendidikanbyid/(:num)', 'Api::setpendidikanbyid/$1');
+$routes->get('api/updatebyid', 'Api::updatebyid');
+
+$routes->cli('api/updatebyid', 'Api::updatebyid');
+
 $routes->get('dashboard', 'Dashboard::index',['filter' => 'auth']);
 
 $routes->group("ajax", ["filter" => "auth"], function ($routes) {

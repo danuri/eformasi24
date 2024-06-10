@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class JabatanModel extends Model
 {
-    protected $table            = 'red_jabatan';
+    protected $table            = 'ref_jabatan';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
